@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id="mybtn" onclick="btnclicked()">MyBtn</button>
+    </div>
+    <ul id="messages">
+    </ul>
+
+    <script>
+        // var ws = new WebSocket("ws://localhost:8765/"),
+        //     messages = document.createElement('ul');
+        // ws.onmessage = function(event){
+        //     var messages = document.getElementsByTagName('ul')[0];
+        //     message = document.createElement('li'),
+        //     content = document.createTextNode(event.data);
+        //     message.appendChild(content);
+        //     messages.appendChild(message);
+        // };
+        // document.body.appendChild(messages);
+
+        var ws = new WebSocket("ws://localhost:8765/");
+        var messages = document.getElementById("messages");
+        var btn = document.getElementById("mybtn");
+        ws.onopen = function(){
+            message = document.createElement('li');
+            message.appendChild(document.createTextNode("websocket open!"));
+            messages.appendChild(message);
+        }
+        ws.onmessage = function(event){
+            message = document.createElement('li');
+            message.appendChild(document.createTextNode(event.data));
+            messages.appendChild(message);
+        }
+        ws.onclose = function(){
+            message = document.createElement('li');
+            message.appendChild(document.createTextNode("websocket close!!"));
+            messages.appendChild(message);
+        }
+
+        function btnclicked(){
+            ws.send("Button Clicked haha!");
+        }
+    </script>
+
+    </body>
+</html>

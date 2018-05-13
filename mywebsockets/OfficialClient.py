@@ -6,3 +6,4 @@ async def hello(uri):
         await websocket.send("Hello world!")
 
 asyncio.get_event_loop().run_until_complete(hello('ws://localhost:8765'))
+# asyncio.get_event_loop().run_forever()

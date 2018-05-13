@@ -1,4 +1,4 @@
-# Have problem running in python 3.6
+# Have problem running in python 3.6, Maybe async for not supported
 import asyncio
 import websockets
 
